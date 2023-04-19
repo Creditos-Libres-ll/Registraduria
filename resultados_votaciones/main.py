@@ -7,8 +7,8 @@ from waitress import serve
 
 """importando"""
 
-from  Repositorios.InterfaceRepositorio import InterfaceRepositorio
-
+from Repositorios.InterfaceRepositorio import InterfaceRepositorio
+from Controladores.ControladorMesa import ControladorMesa
 
 
 
@@ -21,11 +21,22 @@ servidor desde las misma máquina donde está corriendo.
 """
 cors = CORS(app)
 
-miInterfaceRepositorio= InterfaceRepositorio()
+miInterfaceRepositorio = InterfaceRepositorio()
+miControladorMesa = ControladorMesa()
 
 
+""" SERVICIOS DE LA COLECION MESA"""
 
+@app.route("/mesa", methods=['GET'])
+def getMesa():
+    json = miControladorMesa.index()
+    return jsonify(json)
 
+@app.route("/mesa", methods=['POST'])
+def crearMesa():
+    data = request.get_json()
+    json = miControladorMesa.create(data)
+    return jsonify(json)
 
 
 
