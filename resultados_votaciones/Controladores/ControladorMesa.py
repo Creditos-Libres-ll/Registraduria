@@ -1,5 +1,5 @@
-from Modelos.ModeloMesa import Mesa
-from Repositorios.RepositorioMesa import RepositorioMesa
+from resultados_votaciones.Modelos.ModeloMesa import Mesa
+from resultados_votaciones.Repositorios.RepositorioMesa import RepositorioMesa
 
 """
 Dentro de la clase se crean unos metodos, estos serán los encargados de manipular 
@@ -13,7 +13,7 @@ class ControladorMesa():
     constructor que permite llevar a cabo la creacion de instancias del controlador.
     """
     def __init__(self):
-        self.repositorioMesa = RepositorioMesa
+        self.repositorioMesa = RepositorioMesa()
         print("Creando ControladorMesa")
 
     def index(self):
@@ -39,3 +39,4 @@ class ControladorMesa():
     def delete(self, id):
         print("Eliminando mesa con id ", id)
         return self.repositorioMesa.delete(id)
+

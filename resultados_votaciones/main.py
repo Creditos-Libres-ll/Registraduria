@@ -7,8 +7,8 @@ from waitress import serve
 
 """importando"""
 
-from Repositorios.InterfaceRepositorio import InterfaceRepositorio
-from Controladores.ControladorMesa import ControladorMesa
+from resultados_votaciones.Repositorios.InterfaceRepositorio import InterfaceRepositorio
+from resultados_votaciones.Controladores.ControladorMesa import ControladorMesa
 
 
 
@@ -28,7 +28,7 @@ miControladorMesa = ControladorMesa()
 """ SERVICIOS DE LA COLECION MESA"""
 
 @app.route("/mesa", methods=['GET'])
-def getMesa():
+def getMesas():
     json = miControladorMesa.index()
     return jsonify(json)
 
@@ -38,10 +38,26 @@ def crearMesa():
     json = miControladorMesa.create(data)
     return jsonify(json)
 
+@app.route("/mesa/<string:id>", methods=['GET'])
+def getmesa(id):
+    json = miControladorMesa.show(id)
+    return jsonify(json)
 
+@app.route("/mesa/<string:id>", methods=['PUT'])
+def modificarMesa(id):
+    data = request.get_json()
+    json = miControladorMesa.update(id, data)
+    return jsonify(json)
 
+@app.route("/mesa/<string:id>", methods=['DELETE'])
+def eliminarMesa(id):
+    json = miControladorMesa.delete(id)
+    return jsonify(json)
 
-
+@app.route("/mesa/<string:id>", methods=['GET'])
+def getMesa(id):
+    json = miControladorMesa.show(id)
+    return jsonify(json)
 
 
 
