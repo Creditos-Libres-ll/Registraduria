@@ -7,6 +7,7 @@ import json
 
 T = TypeVar('T')
 
+
 class InterfaceRepositorio(Generic[T]):
     def __init__(self):
         ca = certifi.where()
