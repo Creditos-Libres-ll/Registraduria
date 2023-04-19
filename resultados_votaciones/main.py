@@ -11,6 +11,7 @@ from resultados_votaciones.Repositorios.InterfaceRepositorio import InterfaceRep
 from resultados_votaciones.Controladores.ControladorMesa import ControladorMesa
 from resultados_votaciones.Controladores.ControladorPartido import ControladorPartido
 from resultados_votaciones.Controladores.ControladorCandidato import ControladorCandidato
+from resultados_votaciones.Controladores.ControladorResultado import ControladorResultado
 
 
 
@@ -26,6 +27,7 @@ miInterfaceRepositorio = InterfaceRepositorio()
 miControladorMesa = ControladorMesa()
 miControladorPartido = ControladorPartido()
 miControladorCandidato = ControladorCandidato()
+miControladorResultado= ControladorResultado()
 
 
 """ SERVICIOS DE LA COLECION MESA"""
@@ -136,6 +138,37 @@ def asignarPartidoa(id,id_partido):
     return  jsonify(json)
 
 
+"""SERVICIOS DE LA COLLECCIÓN RESULTADOS"""
+
+@app.route("/resultados", methods=['GET'])
+def getResultados():
+    json = miControladorResultado.index()
+    return jsonify(json)
+
+
+@app.route("/resultado/mesa/<string:id_mesa>/candidato/<string:id_candidato>", methods=['POST'])
+def crearInscripcion(id_mesa, id_candidato):
+    data = request.get_json()
+    json = miControladorResultado.create(data, id_mesa, id_candidato)
+    return jsonify(json)
+
+
+@app.route("/resultado/<string:id>", methods=['GET'])
+def getResultado(id):
+    json = miControladorResultado.show(id)
+    return jsonify(json)
+
+
+@app.route("/resultado/<string:id_resultado>/mesa/<string:id_mesa>/candidato/<string:id_candidato>", methods=['PUT'])
+def modificarResultado(id_resultado, id_mesa, id_candidato):
+    json = miControladorResultado.update(id_resultado, id_mesa, id_candidato)
+    return jsonify(json)
+
+
+@app.route("/resultado/<string:id>", methods=['DELETE'])
+def eliminarResultado(id):
+    json = miControladorResultado.delete(id)
+    return jsonify(json)
 
 
 
