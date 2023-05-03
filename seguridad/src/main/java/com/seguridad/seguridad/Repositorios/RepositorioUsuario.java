@@ -1,5 +1,5 @@
 
-package com.tutorial.seguridad.Repositorios;
+package com.seguridad.seguridad.Repositorios;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import com.tutorial.seguridad.Modelos.Usuario;

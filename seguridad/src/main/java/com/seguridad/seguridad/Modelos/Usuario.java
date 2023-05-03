@@ -1,4 +1,4 @@
-package com.tutorial.seguridad.Modelos;
+package com.seguridad.seguridad.Modelos;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
