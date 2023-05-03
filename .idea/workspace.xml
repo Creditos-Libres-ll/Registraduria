@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0fdcaf71-edf4-4113-9aec-4804ae4a4b7e" name="Changes" comment="" />
+    <list default="true" id="0fdcaf71-edf4-4113-9aec-4804ae4a4b7e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seguridad/src/main/java/com/seguridad/seguridad/Modelos/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/seguridad/src/main/java/com/seguridad/seguridad/Modelos/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seguridad/src/main/java/com/seguridad/seguridad/Repositorios/RepositorioUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/seguridad/src/main/java/com/seguridad/seguridad/Repositorios/RepositorioUsuario.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,14 +24,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Git.Branch.Popup.ShowAllRemotes": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/57324/Documents/proyectos_universidad/Registraduria"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Creditos II/Proyecto-Registraduria/Registraduria&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Registraduria" />
