@@ -1,4 +1,7 @@
 package com.seguridad.seguridad.Repositorios;
 
-public interface RepositorioPermiso {
+import Modelos.Permiso;
+import org.springframework.data.mongodb.repository.MongoRepository
+
+public interface RepositorioPermiso extends MongoRepository<Rol,String>{
 }
