@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/roles")
@@ -33,6 +35,30 @@ public class ControladorRol{
             return this.miRepositorioRol.save(RolActual);
         }else{
             return null;
+        }
+    }
+    //Listar Rol
+    @GetMapping("")
+    public List<Rol> index(){
+        return this.miRepositorioRol.findAll();
+    }
+    //Mostrar
+    @GetMapping("{id}")
+    public Rol show(@PathVariable String id){
+        Rol rolActual=this.miRepositorioRol
+                .findById(id)
+                .orElse(null);
+        return rolActual;
+    }
+    //Eliminar Rol
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable String id){
+        Rol rolActual=this.miRepositorioRol
+                .findById(id)
+                .orElse(null);
+        if (rolActual!=null){
+            this.miRepositorioRol.delete(rolActual);
         }
     }
 
