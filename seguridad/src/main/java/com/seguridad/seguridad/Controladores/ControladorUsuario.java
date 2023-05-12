@@ -49,4 +49,32 @@ public class ControladorUsuario {
         }
         return sb.toString();
     }
+    @GetMapping("")
+    public List<Usuario> index(){
+        return this.miRepositorioUsuario.findAll();
+    }
+
+    @GetMapping("id")
+    public Usuario show(@PathVariable String id){
+        Usuario usuarioActual=this.miRepositorioUsuario
+                .findById(id)
+                .orElse(null);
+        return usuarioActual;
+    }
+
+    @PutMapping("id")
+    public Usuario update(@PathVariable String id,@RequestBody Usuario infoUsuario){
+        Usuario usuarioActual=this.miRepositorioUsuario
+                .findById(id)
+                .orElse(null);
+        if (usuarioActual!=null) {
+            usuarioActual.setSeudonimo(infoUsuario.getSeudonimo());
+            usuarioActual.setCorreo(infoUsuario.getCorreo());
+            usuarioActual.setContrasena(convertirSHA256(infoUsuario.getContrasena()));
+            return this.miRepositorioUsuario.save(usuarioActual);
+        }else{
+            return null;
+        }
+    }
 }
+
