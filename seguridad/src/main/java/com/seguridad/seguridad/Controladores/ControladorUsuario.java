@@ -54,7 +54,7 @@ public class ControladorUsuario {
         return this.miRepositorioUsuario.findAll();
     }
 
-    @GetMapping("id")
+    @GetMapping("{id}")
     public Usuario show(@PathVariable String id){
         Usuario usuarioActual=this.miRepositorioUsuario
                 .findById(id)
@@ -62,7 +62,7 @@ public class ControladorUsuario {
         return usuarioActual;
     }
 
-    @PutMapping("id")
+    @PutMapping("{id}")
     public Usuario update(@PathVariable String id,@RequestBody Usuario infoUsuario){
         Usuario usuarioActual=this.miRepositorioUsuario
                 .findById(id)
