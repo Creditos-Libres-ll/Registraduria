@@ -1,16 +1,32 @@
-# This is a sample Python script.
+from flask import Flask
+from flask import jsonify
+from flask import request
+from flask_cors import CORS
+import json
+from waitress import serve
+import datetime
+import requests
+import re
 
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+app = Flask(__name__)
+cors = CORS(app)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+@app.route("/", methods=['GET'])
+def test():
+    json = {}
+    json["message"] = "Server running ..."
+    return jsonify(json)
 
 
-# Press the green button in the gutter to run the script.
+def loadFileConfig():
+    with open('config.json') as f:
+        data = json.load(f)
+    return data
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    dataConfig = loadFileConfig()
+    print("Server running : " + "http://" + dataConfig["url-backend"] +
+          ":" + str(dataConfig["port"]))
+    serve(app, host=dataConfig["url-backend"], port=dataConfig["port"])
