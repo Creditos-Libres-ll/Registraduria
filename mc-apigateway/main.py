@@ -45,7 +45,7 @@ def before_request_callback():
         usuario = get_jwt_identity()
         if usuario["rol"] is not None:
             tienePersmiso = validarPermiso(endPoint, request.method,
-            usuario["rol"]["_id"])
+            usuario["rol"]["id"])
             if not tienePersmiso:
                 return jsonify({"message": "Permission denied"}), 401
         else:
@@ -68,11 +68,58 @@ def validarPermiso(endPoint, metodo, idRol):
     response = requests.get(url, json=body, headers=headers)
     try:
         data = response.json()
-        if ("_id" in data):
+        if ("id" in data):
             tienePermiso = True
     except:
         pass
     return tienePermiso
+
+""" SERVICIOS DE LA COLECION MESA"""
+
+@app.route("/mesa", methods=['GET'])
+def getMesas():
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-votaciones"] + '/mesa'
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
+
+@app.route("/mesa", methods=['POST'])
+def crearMesa():
+    data = request.get_json()
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-votaciones"] + '/mesa'
+    response = requests.post(url, headers=headers, json=data)
+    json = response.json()
+    return jsonify(json)
+
+@app.route("/mesa/<string:id>", methods=['GET'])
+def getmesa(id):
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-votaciones"] + '/mesa/' + id
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
+
+@app.route("/mesa/<string:id>", methods=['PUT'])
+def modificarMesa(id):
+    data = request.get_json()
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-votaciones"] + '/mesa/' + id
+    response = requests.put(url, headers=headers, json=data)
+    json = response.json()
+    return jsonify(json)
+
+@app.route("/mesa/<string:id>", methods=['DELETE'])
+def eliminarMesa(id):
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-votaciones"] + '/mesa/' + id
+    response = requests.delete(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
+
+
+
 
 
 @app.route("/", methods=['GET'])
