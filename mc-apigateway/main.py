@@ -33,6 +33,48 @@ def create_token():
     else:
         return jsonify({"msg": "Bad username or password"}), 401
 
+
+# Funcion que se ejecutará siempre de primero antes de que la consulta llegue a la ruta solicitada
+@app.before_request
+def before_request_callback():
+    endPoint = limpiarURL(request.path)
+    excludedRoutes = ["/login"]
+    if excludedRoutes.__contains__(request.path):
+        pass
+    elif verify_jwt_in_request():
+        usuario = get_jwt_identity()
+        if usuario["rol"] is not None:
+            tienePersmiso = validarPermiso(endPoint, request.method,
+            usuario["rol"]["_id"])
+            if not tienePersmiso:
+                return jsonify({"message": "Permission denied"}), 401
+        else:
+            return jsonify({"message": "Permission denied"}), 401
+def limpiarURL(url):
+    partes = url.split("/")
+    for laParte in partes:
+        if re.search('\\d', laParte):
+            url = url.replace(laParte, "?")
+    return url
+
+def validarPermiso(endPoint, metodo, idRol):
+    url = dataConfig["url-backend-security"] + "/permisos-roles/validar-permiso/rol/" + str(idRol)
+    tienePermiso = False
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    body = {
+        "url": endPoint,
+        "metodo": metodo
+    }
+    response = requests.get(url, json=body, headers=headers)
+    try:
+        data = response.json()
+        if ("_id" in data):
+            tienePermiso = True
+    except:
+        pass
+    return tienePermiso
+
+
 @app.route("/", methods=['GET'])
 def test():
     json = {}
