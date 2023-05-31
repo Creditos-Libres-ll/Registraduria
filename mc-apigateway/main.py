@@ -33,7 +33,6 @@ def create_token():
     else:
         return jsonify({"msg": "Bad username or password"}), 401
 
-
 # Funcion que se ejecutará siempre de primero antes de que la consulta llegue a la ruta solicitada
 @app.before_request
 def before_request_callback():
@@ -118,9 +117,49 @@ def eliminarMesa(id):
     json = response.json()
     return jsonify(json)
 
+""" SERVICIOS DE LA COLECION PARTIDO"""
 
+@app.route("/partido", methods=['GET'])
+def getPartidos():
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-votaciones"] + '/partido'
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
 
+@app.route("/partido", methods=['POST'])
+def crearPartido():
+    data = request.get_json()
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-votaciones"] + '/partido'
+    response = requests.post(url, headers=headers, json=data)
+    json = response.json()
+    return jsonify(json)
 
+@app.route("/partido/<string:id>", methods=['GET'])
+def getpartido(id):
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-votaciones"] + '/partido/' + id
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
+
+@app.route("/partido/<string:id>", methods=['PUT'])
+def modificarPartido(id):
+    data = request.get_json()
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-votaciones"] + '/partido/' + id
+    response = requests.put(url, headers=headers, json=data)
+    json = response.json()
+    return jsonify(json)
+
+@app.route("/partido/<string:id>", methods=['DELETE'])
+def eliminarPartido(id):
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-votaciones"] + '/partido/' + id
+    response = requests.delete(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
 
 @app.route("/", methods=['GET'])
 def test():
