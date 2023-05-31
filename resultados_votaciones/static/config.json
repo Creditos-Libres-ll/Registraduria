@@ -1,6 +1,6 @@
 {
  "url-backend": "127.0.0.1",
  "port": 9999,
- "data-db-connection": "mongodb+srv://usuario-pruebas:p8kiJ4LiPhYpfqtb@cluster0.rb7hihi.mongodb.net/bd-gestion-votaciones?retryWrites=true&w=majority",
+ "data-db-connection": "mongodb+srv://usuario-pruebas:dz0VKAsqJAcHzFye@cluster0.rb7hihi.mongodb.net/bd-gestion-votaciones?retryWrites=true&w=majority",
  "name-db": "bd-gestion-votaciones"
 }
